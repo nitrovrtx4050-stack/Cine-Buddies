@@ -130,7 +130,7 @@ export function getRoomResult(roomCode: string): RoomResult | null {
   const participation = (room?.members ?? []).map((member) => ({
     memberId: member.id,
     name: member.name,
-    votesCast: Object.keys(votes).filter((movieId) => votes[movieId][member.id]).length,
+    votesCast: Object.keys(votes).filter((movieId) => votes[movieId]?.[member.id]).length,
   }));
   return { movie, tally: tallyForWinner, groupMatch: movie.groupMatch, participation };
 }
