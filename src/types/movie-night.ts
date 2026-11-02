@@ -73,6 +73,7 @@ export interface MemberPreferenceSummary {
   languages: string[];
   minRating: number;
   releasePeriod: ReleasePeriod;
+  excludedGenres: string[];
 }
 
 export interface GroupAnalysis {

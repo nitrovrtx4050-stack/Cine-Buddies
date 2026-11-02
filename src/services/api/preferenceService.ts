@@ -4,7 +4,7 @@
  */
 
 import type { Preferences } from "@/types/movie-night";
-import { PERSONA_PREFERENCES } from "@/mocks/mockData";
+import { DEFAULT_PREFERENCES, PERSONA_PREFERENCES } from "@/mocks/mockData";
 import { store } from "@/mocks/mockStore";
 import { delay } from "@/services/api/apiClient";
 import { normalizeRoomCode } from "@/services/api/roomService";
@@ -32,5 +32,5 @@ export function getPreferences(roomCode: string, memberId: string): Preferences 
 
 /** Sample preferences for the mock participants (Alex, Rahul, Sam). */
 export function getPersonaPreferences(memberId: string): Preferences {
-  return PERSONA_PREFERENCES[memberId] ?? PERSONA_PREFERENCES["member-alex"];
+  return PERSONA_PREFERENCES[memberId] ?? DEFAULT_PREFERENCES;
 }

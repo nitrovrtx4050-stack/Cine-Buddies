@@ -9,8 +9,8 @@
 
 export const USE_MOCK_SERVICES = true;
 
-const API_BASE_URL: string =
-  (import.meta.env?.VITE_API_BASE_URL as string | undefined) ?? "";
+const env = import.meta.env as Record<string, string | undefined>;
+const API_BASE_URL: string = env["VITE_API_BASE_URL"] ?? "";
 
 export class ApiError extends Error {
   status: number;

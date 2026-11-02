@@ -124,12 +124,13 @@ export function getRoomResult(roomCode: string): RoomResult | null {
   const movie = RECOMMENDATIONS.find((m) => m.id === winnerId);
   if (!movie) return null;
   const votes = state.votes[code] ?? {};
-  const tally = calculateScores(votes).find((t) => t.movieId === winnerId)!;
+  const tallyForWinner = calculateScores(votes).find((t) => t.movieId === winnerId);
+  if (!tallyForWinner) return null;
   const room = state.rooms[code];
   const participation = (room?.members ?? []).map((member) => ({
     memberId: member.id,
     name: member.name,
     votesCast: Object.keys(votes).filter((movieId) => votes[movieId][member.id]).length,
   }));
-  return { movie, tally, groupMatch: movie.groupMatch, participation };
+  return { movie, tally: tallyForWinner, groupMatch: movie.groupMatch, participation };
 }

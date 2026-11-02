@@ -102,11 +102,12 @@ export async function joinRoom(input: { code: string; displayName: string }): Pr
     user: { id: CURRENT_MEMBER_ID, name, email: previous.user?.email ?? null },
     currentRoomCode: code,
   }));
-  return store.getState().rooms[code];
+  return store.getState().rooms[code] ?? state().rooms[code];
 }
 
 export async function getRoom(code: string): Promise<Room | null> {
-  return state().rooms[normalizeRoomCode(code)] ?? null;
+  const room = state().rooms[normalizeRoomCode(code)];
+  return room ?? null;
 }
 
 export async function setCurrentRoom(code: string): Promise<void> {

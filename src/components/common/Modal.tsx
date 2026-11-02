@@ -23,7 +23,6 @@ export function Modal({ open, onOpenChange, title, description, children, classN
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
-        showCloseButton={showClose}
         className={cn("max-h-[85vh] overflow-y-auto scrollbar-subtle border-border bg-card p-6 sm:max-w-lg", className)}
       >
         {(title || description) && (

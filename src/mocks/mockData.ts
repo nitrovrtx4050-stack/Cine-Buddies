@@ -279,11 +279,10 @@ export function releasePeriodLabel(period: ReleasePeriod): string {
 
 /** Builds the analysis payload shown on the Group Analysis screen. */
 export function buildGroupAnalysis(summaries: GroupAnalysis["memberSummaries"]): GroupAnalysis {
-  const commonGenres = summaries.length
-    ? summaries[0].genres.filter((g) => summaries.every((s) => s.genres.includes(g)))
-    : [];
-  const commonLanguages = summaries.length
-    ? summaries[0].languages.filter((l) => summaries.every((s) => s.languages.includes(l)))
+  const first = summaries[0];
+  const commonGenres = first ? first.genres.filter((g) => summaries.every((s) => s.genres.includes(g))) : [];
+  const commonLanguages = first
+    ? first.languages.filter((l) => summaries.every((s) => s.languages.includes(l)))
     : [];
   const averageMinRating = summaries.length
     ? Math.round((summaries.reduce((sum, s) => sum + s.minRating, 0) / summaries.length) * 10) / 10

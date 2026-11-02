@@ -4,5 +4,5 @@
  * file changes.
  */
 
-export { toast, Toaster } from "sonner";
-export { default as ToastViewport } from "@/components/ui/sonner";
+export { toast } from "sonner";
+export { Toaster } from "@/components/ui/sonner";
