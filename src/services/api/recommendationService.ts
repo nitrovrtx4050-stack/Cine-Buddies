@@ -41,6 +41,7 @@ export async function getGroupAnalysis(roomCode: string): Promise<GroupAnalysis>
       languages: preferences.languages,
       minRating: preferences.minRating,
       releasePeriod: preferences.releasePeriod,
+      excludedGenres: preferences.excludedGenres,
     };
   });
   return buildGroupAnalysis(summaries);

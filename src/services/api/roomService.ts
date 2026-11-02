@@ -102,7 +102,9 @@ export async function joinRoom(input: { code: string; displayName: string }): Pr
     user: { id: CURRENT_MEMBER_ID, name, email: previous.user?.email ?? null },
     currentRoomCode: code,
   }));
-  return store.getState().rooms[code] ?? state().rooms[code];
+  const joined = store.getState().rooms[code];
+  if (!joined) throw new RoomNotFoundError();
+  return joined;
 }
 
 export async function getRoom(code: string): Promise<Room | null> {
