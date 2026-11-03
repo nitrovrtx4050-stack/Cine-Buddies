@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/common/Button";
 import { Input } from "@/components/common/Input";
-import { roomService } from "@/services/api/roomService";
+import * as roomService from "@/services/api/roomService";
 
 export interface AuthFormProps {
   mode: "signin" | "signup";
