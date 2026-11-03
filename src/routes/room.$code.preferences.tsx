@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 
 import { PreferenceForm } from "@/components/movie-night/PreferenceForm";

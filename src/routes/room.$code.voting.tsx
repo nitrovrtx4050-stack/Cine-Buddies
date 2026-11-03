@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, createFileRoute } from "@tanstack/react-router";
 import { Trophy } from "lucide-react";
 import { toast } from "sonner";
 
@@ -18,6 +18,8 @@ export const Route = createFileRoute("/room/$code/voting")({
 });
 
 function VotingPage() {
+  const { code } = Route.useParams();
+  const [selected, setSelected] = useState<Movie | null>(null);
   const { code } = Route.useParams();
   const room = useRoomByCode(code);
   const session = useSession();

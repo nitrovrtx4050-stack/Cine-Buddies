@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, createFileRoute } from "@tanstack/react-router";
 import { RefreshCw, Trophy } from "lucide-react";
 import { toast } from "sonner";
 

@@ -16,6 +16,11 @@ import { Route as SigninRouteImport } from './routes/signin'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as RoomCodeRouteImport } from './routes/room.$code'
 import { Route as RoomCodeIndexRouteImport } from './routes/room.$code.index'
+import { Route as RoomCodeAnalysisRouteImport } from './routes/room.$code.analysis'
+import { Route as RoomCodePreferencesRouteImport } from './routes/room.$code.preferences'
+import { Route as RoomCodeRecommendationsRouteImport } from './routes/room.$code.recommendations'
+import { Route as RoomCodeResultRouteImport } from './routes/room.$code.result'
+import { Route as RoomCodeVotingRouteImport } from './routes/room.$code.voting'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +57,31 @@ const RoomCodeIndexRoute = RoomCodeIndexRouteImport.update({
   path: '/',
   getParentRoute: () => RoomCodeRoute,
 } as any)
+const RoomCodeAnalysisRoute = RoomCodeAnalysisRouteImport.update({
+  id: '/analysis',
+  path: '/analysis',
+  getParentRoute: () => RoomCodeRoute,
+} as any)
+const RoomCodePreferencesRoute = RoomCodePreferencesRouteImport.update({
+  id: '/preferences',
+  path: '/preferences',
+  getParentRoute: () => RoomCodeRoute,
+} as any)
+const RoomCodeRecommendationsRoute = RoomCodeRecommendationsRouteImport.update({
+  id: '/recommendations',
+  path: '/recommendations',
+  getParentRoute: () => RoomCodeRoute,
+} as any)
+const RoomCodeResultRoute = RoomCodeResultRouteImport.update({
+  id: '/result',
+  path: '/result',
+  getParentRoute: () => RoomCodeRoute,
+} as any)
+const RoomCodeVotingRoute = RoomCodeVotingRouteImport.update({
+  id: '/voting',
+  path: '/voting',
+  getParentRoute: () => RoomCodeRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -60,6 +90,11 @@ export interface FileRoutesByFullPath {
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/room/$code': typeof RoomCodeRouteWithChildren
+  '/room/$code/analysis': typeof RoomCodeAnalysisRoute
+  '/room/$code/preferences': typeof RoomCodePreferencesRoute
+  '/room/$code/recommendations': typeof RoomCodeRecommendationsRoute
+  '/room/$code/result': typeof RoomCodeResultRoute
+  '/room/$code/voting': typeof RoomCodeVotingRoute
   '/room/$code/': typeof RoomCodeIndexRoute
 }
 export interface FileRoutesByTo {
@@ -68,6 +103,11 @@ export interface FileRoutesByTo {
   '/join': typeof JoinRoute
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
+  '/room/$code/analysis': typeof RoomCodeAnalysisRoute
+  '/room/$code/preferences': typeof RoomCodePreferencesRoute
+  '/room/$code/recommendations': typeof RoomCodeRecommendationsRoute
+  '/room/$code/result': typeof RoomCodeResultRoute
+  '/room/$code/voting': typeof RoomCodeVotingRoute
   '/room/$code': typeof RoomCodeIndexRoute
 }
 export interface FileRoutesById {
@@ -78,6 +118,11 @@ export interface FileRoutesById {
   '/signin': typeof SigninRoute
   '/signup': typeof SignupRoute
   '/room/$code': typeof RoomCodeRouteWithChildren
+  '/room/$code/analysis': typeof RoomCodeAnalysisRoute
+  '/room/$code/preferences': typeof RoomCodePreferencesRoute
+  '/room/$code/recommendations': typeof RoomCodeRecommendationsRoute
+  '/room/$code/result': typeof RoomCodeResultRoute
+  '/room/$code/voting': typeof RoomCodeVotingRoute
   '/room/$code/': typeof RoomCodeIndexRoute
 }
 export interface FileRouteTypes {
@@ -89,9 +134,25 @@ export interface FileRouteTypes {
     | '/signin'
     | '/signup'
     | '/room/$code'
+    | '/room/$code/analysis'
+    | '/room/$code/preferences'
+    | '/room/$code/recommendations'
+    | '/room/$code/result'
+    | '/room/$code/voting'
     | '/room/$code/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create' | '/join' | '/signin' | '/signup' | '/room/$code'
+  to:
+    | '/'
+    | '/create'
+    | '/join'
+    | '/signin'
+    | '/signup'
+    | '/room/$code/analysis'
+    | '/room/$code/preferences'
+    | '/room/$code/recommendations'
+    | '/room/$code/result'
+    | '/room/$code/voting'
+    | '/room/$code'
   id:
     | '__root__'
     | '/'
@@ -100,6 +161,11 @@ export interface FileRouteTypes {
     | '/signin'
     | '/signup'
     | '/room/$code'
+    | '/room/$code/analysis'
+    | '/room/$code/preferences'
+    | '/room/$code/recommendations'
+    | '/room/$code/result'
+    | '/room/$code/voting'
     | '/room/$code/'
   fileRoutesById: FileRoutesById
 }
@@ -163,14 +229,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoomCodeIndexRouteImport
       parentRoute: typeof RoomCodeRoute
     }
+    '/room/$code/analysis': {
+      id: '/room/$code/analysis'
+      path: '/analysis'
+      fullPath: '/room/$code/analysis'
+      preLoaderRoute: typeof RoomCodeAnalysisRouteImport
+      parentRoute: typeof RoomCodeRoute
+    }
+    '/room/$code/preferences': {
+      id: '/room/$code/preferences'
+      path: '/preferences'
+      fullPath: '/room/$code/preferences'
+      preLoaderRoute: typeof RoomCodePreferencesRouteImport
+      parentRoute: typeof RoomCodeRoute
+    }
+    '/room/$code/recommendations': {
+      id: '/room/$code/recommendations'
+      path: '/recommendations'
+      fullPath: '/room/$code/recommendations'
+      preLoaderRoute: typeof RoomCodeRecommendationsRouteImport
+      parentRoute: typeof RoomCodeRoute
+    }
+    '/room/$code/result': {
+      id: '/room/$code/result'
+      path: '/result'
+      fullPath: '/room/$code/result'
+      preLoaderRoute: typeof RoomCodeResultRouteImport
+      parentRoute: typeof RoomCodeRoute
+    }
+    '/room/$code/voting': {
+      id: '/room/$code/voting'
+      path: '/voting'
+      fullPath: '/room/$code/voting'
+      preLoaderRoute: typeof RoomCodeVotingRouteImport
+      parentRoute: typeof RoomCodeRoute
+    }
   }
 }
 
 interface RoomCodeRouteChildren {
+  RoomCodeAnalysisRoute: typeof RoomCodeAnalysisRoute
+  RoomCodePreferencesRoute: typeof RoomCodePreferencesRoute
+  RoomCodeRecommendationsRoute: typeof RoomCodeRecommendationsRoute
+  RoomCodeResultRoute: typeof RoomCodeResultRoute
+  RoomCodeVotingRoute: typeof RoomCodeVotingRoute
   RoomCodeIndexRoute: typeof RoomCodeIndexRoute
 }
 
 const RoomCodeRouteChildren: RoomCodeRouteChildren = {
+  RoomCodeAnalysisRoute: RoomCodeAnalysisRoute,
+  RoomCodePreferencesRoute: RoomCodePreferencesRoute,
+  RoomCodeRecommendationsRoute: RoomCodeRecommendationsRoute,
+  RoomCodeResultRoute: RoomCodeResultRoute,
+  RoomCodeVotingRoute: RoomCodeVotingRoute,
   RoomCodeIndexRoute: RoomCodeIndexRoute,
 }
 

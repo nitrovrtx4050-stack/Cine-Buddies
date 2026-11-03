@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, createFileRoute } from "@tanstack/react-router";
 import { AlertTriangle, ArrowRight, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/common/Button";
