@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, createFileRoute } from "@tanstack/react-router";
 import { ListChecks, Play, Sparkles, Users, Vote, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 

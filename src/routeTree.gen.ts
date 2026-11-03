@@ -10,33 +10,106 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CreateRouteImport } from './routes/create'
+import { Route as JoinRouteImport } from './routes/join'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as RoomCodeRouteImport } from './routes/room.$code'
+import { Route as RoomCodeIndexRouteImport } from './routes/room.$code.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CreateRoute = CreateRouteImport.update({
+  id: '/create',
+  path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JoinRoute = JoinRouteImport.update({
+  id: '/join',
+  path: '/join',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SigninRoute = SigninRouteImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoomCodeRoute = RoomCodeRouteImport.update({
+  id: '/room/$code',
+  path: '/room/$code',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoomCodeIndexRoute = RoomCodeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RoomCodeRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/join': typeof JoinRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
+  '/room/$code': typeof RoomCodeRouteWithChildren
+  '/room/$code/': typeof RoomCodeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/join': typeof JoinRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
+  '/room/$code': typeof RoomCodeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/create': typeof CreateRoute
+  '/join': typeof JoinRoute
+  '/signin': typeof SigninRoute
+  '/signup': typeof SignupRoute
+  '/room/$code': typeof RoomCodeRouteWithChildren
+  '/room/$code/': typeof RoomCodeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/create'
+    | '/join'
+    | '/signin'
+    | '/signup'
+    | '/room/$code'
+    | '/room/$code/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/create' | '/join' | '/signin' | '/signup' | '/room/$code'
+  id:
+    | '__root__'
+    | '/'
+    | '/create'
+    | '/join'
+    | '/signin'
+    | '/signup'
+    | '/room/$code'
+    | '/room/$code/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreateRoute: typeof CreateRoute
+  JoinRoute: typeof JoinRoute
+  SigninRoute: typeof SigninRoute
+  SignupRoute: typeof SignupRoute
+  RoomCodeRoute: typeof RoomCodeRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +121,70 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/join': {
+      id: '/join'
+      path: '/join'
+      fullPath: '/join'
+      preLoaderRoute: typeof JoinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/room/$code': {
+      id: '/room/$code'
+      path: '/room/$code'
+      fullPath: '/room/$code'
+      preLoaderRoute: typeof RoomCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/room/$code/': {
+      id: '/room/$code/'
+      path: '/'
+      fullPath: '/room/$code/'
+      preLoaderRoute: typeof RoomCodeIndexRouteImport
+      parentRoute: typeof RoomCodeRoute
+    }
   }
 }
 
+interface RoomCodeRouteChildren {
+  RoomCodeIndexRoute: typeof RoomCodeIndexRoute
+}
+
+const RoomCodeRouteChildren: RoomCodeRouteChildren = {
+  RoomCodeIndexRoute: RoomCodeIndexRoute,
+}
+
+const RoomCodeRouteWithChildren = RoomCodeRoute._addFileChildren(
+  RoomCodeRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreateRoute: CreateRoute,
+  JoinRoute: JoinRoute,
+  SigninRoute: SigninRoute,
+  SignupRoute: SignupRoute,
+  RoomCodeRoute: RoomCodeRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

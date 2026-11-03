@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 
 import { AppHeader } from "@/components/movie-night/AppHeader";

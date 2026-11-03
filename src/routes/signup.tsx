@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 
 import { AppHeader } from "@/components/movie-night/AppHeader";
 import { AuthForm } from "@/components/movie-night/AuthForm";

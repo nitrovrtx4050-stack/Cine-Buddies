@@ -1,4 +1,4 @@
-import { Link, Outlet } from "@tanstack/react-router";
+import { Link, Outlet, createFileRoute } from "@tanstack/react-router";
 import { Home } from "lucide-react";
 
 import { AppHeader } from "@/components/movie-night/AppHeader";

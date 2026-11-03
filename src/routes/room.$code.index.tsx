@@ -1,8 +1,8 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/common/Button";
-import { EmptyState } from "@/components/common/EmptyState";
 import { MemberCard } from "@/components/movie-night/MemberCard";
 import { RoomCodeCard } from "@/components/movie-night/RoomCodeCard";
 import { CURRENT_MEMBER_ID } from "@/mocks/mockData";
@@ -85,7 +85,10 @@ function LobbyPage() {
                 <p className="mt-1.5 text-xs text-muted-foreground">
                   Tell the planner what you feel like watching and it will find the overlap.
                 </p>
-                <Button className="mt-4 w-full" asChild={false} onClick={() => void navigate({ to: "/room/$code/preferences", params: { code: room.code } })}>
+                <Button
+                  className="mt-4 w-full"
+                  onClick={() => void navigate({ to: "/room/$code/preferences", params: { code: room.code } })}
+                >
                   Add your preferences <ArrowRight size={15} />
                 </Button>
               </div>
@@ -97,9 +100,9 @@ function LobbyPage() {
               <Button
                 className="mt-4 w-full"
                 onClick={() =>
-                  void joinRoom({ code: room.code, displayName: session.user?.name ?? "You" }).then(() =>
-                    toast("You joined the room"),
-                  )
+                  void joinRoom({ code: room.code, displayName: session.user?.name ?? "You" }).then(() => {
+                    toast.success("You joined the room");
+                  })
                 }
               >
                 Join this room
@@ -132,17 +135,6 @@ function LobbyPage() {
           </div>
         </div>
       </div>
-
-      {me && !me.preferencesSubmitted ? (
-        <p className="text-center text-xs text-muted-foreground">
-          Prefer to browse first? <Link to="/room/$code/preferences" params={{ code: room.code }} className="text-primary underline-offset-4 hover:underline">Open the preference form</Link> any time.
-        </p>
-      ) : null}
     </div>
   );
 }
-
-// Local import so the toast facade stays the only sonner surface in screens.
-import { toast } from "sonner";
-import { EmptyState as _Unused } from "@/components/common/EmptyState";
-void _Unused;
