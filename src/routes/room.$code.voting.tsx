@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, createFileRoute } from "@tanstack/react-router";
 import { Trophy } from "lucide-react";
 import { toast } from "sonner";
@@ -133,6 +133,3 @@ function VotingPage() {
   );
 }
 
-// Selected movie state lives with the grid above; declared late to keep the
-// component body tidy without a forward reference.
-const [selected, setSelected] = [undefined, undefined] as never;

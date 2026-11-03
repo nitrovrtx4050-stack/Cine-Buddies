@@ -4,14 +4,14 @@ import { Clapperboard, ListChecks, Sparkles, Trophy, Users, Vote } from "lucide-
 
 import { cn } from "@/lib/utils";
 
-const STEPS: { key: string; label: string; icon: LucideIcon; to: "/room/$code" | `/room/$code/${string}` }[] = [
+const STEPS = [
   { key: "lobby", label: "Lobby", icon: Users, to: "/room/$code" },
   { key: "preferences", label: "Preferences", icon: ListChecks, to: "/room/$code/preferences" },
   { key: "analysis", label: "Analysis", icon: Sparkles, to: "/room/$code/analysis" },
   { key: "recommendations", label: "Picks", icon: Clapperboard, to: "/room/$code/recommendations" },
   { key: "voting", label: "Voting", icon: Vote, to: "/room/$code/voting" },
   { key: "result", label: "Result", icon: Trophy, to: "/room/$code/result" },
-];
+] as const;
 
 export interface StepperProps {
   code: string;

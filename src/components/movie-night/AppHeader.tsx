@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 
 export interface AppHeaderProps {
   /** Signed-in (mock) user name shown as a chip on the right. */
-  userName?: string | null;
-  subtitle?: string;
+  userName?: string | null | undefined;
+  subtitle?: string | undefined;
   className?: string;
 }
 

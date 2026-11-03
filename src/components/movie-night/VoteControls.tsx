@@ -35,7 +35,7 @@ const CHOICES: {
 
 export interface VoteControlsProps {
   /** Currently selected choice for the current user, if any. */
-  value?: VoteChoice;
+  value?: VoteChoice | undefined;
   onVote: (choice: VoteChoice) => void;
   className?: string;
 }
