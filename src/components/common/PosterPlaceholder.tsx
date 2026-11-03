@@ -11,7 +11,7 @@ export interface PosterPlaceholderProps {
    * Future TMDB integration: when a poster path is provided it is rendered
    * instead of the placeholder. The card layout never changes.
    */
-  posterPath?: string;
+  posterPath?: string | undefined;
   icon?: "film" | "clapperboard";
   className?: string;
 }
